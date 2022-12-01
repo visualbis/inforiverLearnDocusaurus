@@ -10,8 +10,19 @@ let demo = {
   next: "/learn/modules/module-a/audit",
 };
 
-const FunDropdown = () => {
+const FunDropdown = ({ id }) => {
   const [isActive, setisActive] = useState(false);
+
+  function dropDownDisplayName() {
+    Data.map((value) => {
+      if (value.id === id) {
+        demo.from = value.from;
+        demo.id = value.id;
+        demo.next = value.next;
+        demo.prev = value.prev;
+      }
+    })
+  } dropDownDisplayName()
 
   function forPerev() {
     if (demo.id === 1) {
@@ -34,8 +45,6 @@ const FunDropdown = () => {
       demo.id = Data.length;
     } else {
       demo.id += 1;
-      console.log(demo.id);
-      console.log(Data.length);
       Data.forEach((e) => {
         if (e.id === demo.id) {
           demo.next = e.next;
@@ -47,41 +56,39 @@ const FunDropdown = () => {
   }
 
   return (
-    <div className= "dropdown">
+    <div className="dropdown">
       <Link to={demo.prev}>
-        <div className= {demo.prev==="" ? "disable-btn" : "button-24"} disabled={demo.prev === ""} onClick={forPerev}> &laquo; Previous</div>
+        <div className={demo.prev === "" ? "disable-btn" : "button-24"} disabled={demo.prev === ""} onClick={forPerev}> &laquo; Previous</div>
       </Link>
 
       <div className="unit-selection">
-      <button className="dropdown-btn" onClick={(e) => setisActive(!isActive)}>
-        <div className="unit"> {demo.from}</div>
-        <div class="arrow"></div>
-      </button>
+        <button className="dropdown-btn" onClick={(e) => setisActive(!isActive)}>
+          <div className="unit"> {demo.from}</div>
+          <div class="arrow"></div>
+        </button>
       </div>
+      {isActive && (
+        <div className="dropdown-content">
+          {Data.map((samples) => (
+            <Link to={samples.to}>
+              <div
+                className="dropdown-item"
+                onClick={(e) => {
+                  demo.from = samples.from;
+                  demo.id = samples.id;
+                  demo.next = samples.next;
+                  demo.prev = samples.prev;
+                }}
+              >
+                {samples.from}
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
 
-        {isActive && (
-      
-            <div className="dropdown-content">
-            {Data.map((samples) => (
-              <Link to={samples.to}>
-                <div
-                  className="dropdown-item"
-                  onClick={(e) => {
-                    demo.from = samples.from;
-                    demo.id = samples.id;
-                    demo.next = samples.next;
-                    demo.prev = samples.prev;
-                  }}
-                >
-                  {samples.from}
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-    
       <Link to={demo.next}>
-        < div className= {demo.next==="" ? "disable-btn" : "button-24"} disabled = {demo.next === ""} onClick={forNext}>Next &raquo;</div>
+        < div className={demo.next === "" ? "disable-btn" : "button-24"} disabled={demo.next === ""} onClick={forNext}>Next &raquo;</div>
       </Link>
     </div>
   );
