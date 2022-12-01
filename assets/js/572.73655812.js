@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkinforiver_docusaurus=self.webpackChunkinforiver_docusaurus||[]).push([[572],{2572:(u,s,r)=>{r.r(s)}}]);
