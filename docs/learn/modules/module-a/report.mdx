@@ -2,19 +2,21 @@
 id: Report+
 title: Report
 hide_title: true
+dropdown_id: 8
 # sidebar_label: Report+
 ---
 
 import clsx from "clsx";
 import styles from "../../../../src/css/learn/learn.module.css";
 import DropDown from "./DropDown/DropDown.js";
+import ReactMarkdown from 'react-markdown'
 
-<DropDown/>
+
+<DropDown id={frontMatter.dropdown_id}/>
 <div className={clsx(styles.page,"item shadow--md")}>
 
-# Report
+<ReactMarkdown>## Report+</ReactMarkdown>
 
-Inforiver is a powerful, multi-purpose tool and can be used across all functions in an organization. ValQ helps decision-makers and executives simulate various scenarios on-the-fly and analyze outcomes to arrive at actionable decisions. ValQ supports use cases such as what-if simulations, scenario comparisons, planning, forecasting, variance analysis, value driver analysis, and more.
-
+<ReactMarkdown>Inforiver is a powerful, multi-purpose tool and can be used across all functions in an organization. ValQ helps decision-makers and executives simulate various scenarios on-the-fly and analyze outcomes to arrive at actionable decisions. ValQ supports use cases such as what-if simulations, scenario comparisons, planning, forecasting, variance analysis, value driver analysis, and more.</ReactMarkdown>
 
 </div>
