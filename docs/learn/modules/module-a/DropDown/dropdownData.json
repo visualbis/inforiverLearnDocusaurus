@@ -15,7 +15,7 @@
   },
   {
     "id": 3,
-    "from": "Themes ",
+    "from": "Themes",
     "to": "/learn/modules/module-a/themes",
     "prev": "/learn/modules/module-a/audit",
     "next": "/learn/modules/module-a/set%20version"
@@ -57,7 +57,7 @@
   },
   {
     "id": 9,
-    "from": "Template row",
+    "from": "Template Row",
     "to": "/learn/modules/module-a/template%20row",
     "prev": "/learn/modules/module-a/report+",
     "next": ""

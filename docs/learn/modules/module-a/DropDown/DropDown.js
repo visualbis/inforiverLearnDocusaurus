@@ -1,36 +1,39 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef} from "react";
 import Link from "@docusaurus/Link";
 import "./dropdown.css";
 import Data from "./dropdownData.json";
+import { value } from "../../../../../src/components/PageView";
+import { Datafun } from "./MainDataFunction";
 
 let demo = {
-  id: 1,
-  from: "Export and Import",
+  id: 0,
+  from: "",
   prev: "",
-  next: "/learn/modules/module-a/audit",
+  next: "",
 };
+function initialStateValueOfDropDown (){
+  for(let i=0;i<value.length;i++){
+    if(i===0){
+      demo.from=value[i].chapter
+      demo.next=`/learn/modules/module-a/${value[i+1].chapter}`
+    }
+  }
+} initialStateValueOfDropDown ()
 
 const FunDropdown = ({ id }) => {
   const [isActive, setisActive] = useState(false);
-
-  function dropDownDisplayName() {
-    Data.map((value) => {
-      if (value.id === id) {
-        demo.from = value.from;
-        demo.id = value.id;
-        demo.next = value.next;
-        demo.prev = value.prev;
-      }
-    })
-  } dropDownDisplayName()
+  const ref=useRef([])
+  useEffect(()=>{
+    ref.current=Datafun(Data,value)
+  },[])
+  
 
   function forPerev() {
     if (demo.id === 1) {
       demo.id = 1;
     } else {
       demo.id -= 1;
-
-      Data.forEach((e) => {
+      ref.current.forEach((e) => {
         if (e.id === demo.id) {
           demo.prev = e.prev;
           demo.next = e.next;
@@ -41,11 +44,11 @@ const FunDropdown = ({ id }) => {
   }
 
   function forNext() {
-    if (demo.id === Data.length) {
-      demo.id = Data.length;
+    if (demo.id === ref.current.length) {
+      demo.id = ref.current.length;
     } else {
       demo.id += 1;
-      Data.forEach((e) => {
+      ref.current.forEach((e) => {
         if (e.id === demo.id) {
           demo.next = e.next;
           demo.prev = e.prev;
@@ -69,7 +72,7 @@ const FunDropdown = ({ id }) => {
       </div>
       {isActive && (
         <div className="dropdown-content">
-          {Data.map((samples) => (
+          {ref.current.map((samples) => (
             <Link to={samples.to}>
               <div
                 className="dropdown-item"
@@ -88,7 +91,7 @@ const FunDropdown = ({ id }) => {
       )}
 
       <Link to={demo.next}>
-        < div className={demo.next === "" ? "disable-btn" : "button-24"} disabled={demo.next === ""} onClick={forNext}>Next &raquo;</div>
+        <div className={demo.next === "" ? "disable-btn" : "button-24"} disabled={demo.next === ""} onClick={forNext}>Next &raquo;</div>
       </Link>
     </div>
   );

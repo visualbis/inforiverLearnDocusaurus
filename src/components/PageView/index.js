@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useRef,useEffect} from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import styles from "../../css/learn/learn.module.css";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
+export let value=[]
+
 export default function Breadcrumbs({ link, title, description, chapters }) {
+
+  const submit=()=>{
+    value=chapters
+  }
+  
   return (
     <>
       <div className={clsx(styles.page, "item shadow--md")}>
@@ -22,7 +29,7 @@ export default function Breadcrumbs({ link, title, description, chapters }) {
               <div>
                 <Link
                   className="button button--outline button--secondary button--lg"
-                  to="module-a/Export and Import">
+                  to={`module-a/Export and Import`} onClick={submit()}>
                   <div>Start</div>
                 </Link>
               </div>
