@@ -8,9 +8,17 @@ export let value=[]
 
 export default function Breadcrumbs({ link, title, description, chapters }) {
 
-  const submit=()=>{
-    value=chapters
-  }
+    const redirect=useRef("")
+    const pageRedirect=()=>{
+      chapters.map((item,index)=>{
+        if(index===0){
+          redirect.current=item.chapter
+        }
+      })
+    }
+    pageRedirect()
+
+   const submit=()=>{value=chapters}
   
   return (
     <>
@@ -29,7 +37,7 @@ export default function Breadcrumbs({ link, title, description, chapters }) {
               <div>
                 <Link
                   className="button button--outline button--secondary button--lg"
-                  to={`module-a/Export and Import`} onClick={submit()}>
+                  to={`module-a/${redirect.current}`} onClick={submit()}>
                   <div>Start</div>
                 </Link>
               </div>
