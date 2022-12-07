@@ -18,7 +18,7 @@ export default function Breadcrumbs({ link, title, description, chapters }) {
     }
     pageRedirect()
 
-   const submit=()=>{value=chapters}
+  const submit=()=>{value=chapters}
   
   return (
     <>
