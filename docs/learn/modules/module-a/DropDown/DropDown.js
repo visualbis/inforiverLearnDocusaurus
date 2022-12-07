@@ -22,7 +22,6 @@ function initialStateValueOfDropDown (){
 
 const FunDropdown = ({ id }) => {
   
-  
   const [isActive, setisActive] = useState(false);
   const ref=useRef([])
   useEffect(()=>{
