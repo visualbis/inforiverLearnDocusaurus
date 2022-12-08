@@ -5,10 +5,13 @@ import styles from "../../css/learn/learn.module.css";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
 export let value=[]
+export let DropdownData=[]
 
 export default function Breadcrumbs({ link, title, description, chapters }) {
 
-    const redirect=useRef("")
+    const redirect=useRef("") 
+    const DropDownitems=useRef([])
+    DropDownitems.current=chapters
     const pageRedirect=()=>{
       chapters.map((item,index)=>{
         if(index===0){
@@ -18,8 +21,8 @@ export default function Breadcrumbs({ link, title, description, chapters }) {
     }
     pageRedirect()
 
-  const submit=()=>{value=chapters}
-  
+    const submit=()=>{value=chapters}
+    const  datSubmit=()=>{ DropdownData=DropDownitems.current}  
   return (
     <>
       <div className={clsx(styles.page, "item shadow--md")}>
@@ -45,10 +48,10 @@ export default function Breadcrumbs({ link, title, description, chapters }) {
             <div>
               <div style={{ padding: "2.5rem 0" }}>
                 {chapters.map((chapter) => (
-                  <div className={styles.unitColumn}>
+                  <div className={styles.unitColumn} >
                     <a
                       href={`module-a/${chapter.chapter}`}
-                      key={chapter.chapter}>
+                      key={chapter.chapter} onClick={datSubmit()}>
                       {chapter.chapter}
                     </a>
                     <span>2 mins</span>
