@@ -2,7 +2,7 @@ import React, { useState,useEffect,useRef} from "react";
 import Link from "@docusaurus/Link";
 import "./dropdown.css";
 import Data from "./dropdownData.json";
-import { value } from "../../../../../src/components/PageView";
+import { value } from "../../../../../src/components/PageView/index";
 import { Datafun } from "./MainDataFunction";
 
 let demo = {
@@ -20,15 +20,30 @@ function initialStateValueOfDropDown (){
   }
 } initialStateValueOfDropDown ()
 
-const FunDropdown = ({ id }) => {
-  
-  
+const FunDropdown = ({ id,dropData}) => {
+
   const [isActive, setisActive] = useState(false);
   const ref=useRef([])
   useEffect(()=>{
     ref.current=Datafun(Data,value)
   },[])
+
+  const initialDropValueRef=()=>{
+    ref.current.map((item)=>{
+      if(item.from===id){
+        demo.from=item.from
+      } 
+     })
+  }
+  const initialDropValueData=()=>{
+    Data.map((item)=>{
+      if(item.from===id){
+        demo.from=item.from
+      } 
+     })
+  }
   
+  {ref.current.length>0? initialDropValueRef():initialDropValueData()}
 
   function forPerev() {
     if (demo.id === 1) {
