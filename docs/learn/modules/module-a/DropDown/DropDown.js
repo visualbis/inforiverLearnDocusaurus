@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link";
 import "./dropdown.css";
 import Data from "./dropdownData.json";
 import { value } from "../../../../../src/components/PageView/index";
-import { Datafun } from "./MainDataFunction";
+import { Datafunction } from "./MainDataFunction";
 
 let demo = {
   id: 0,
@@ -20,30 +20,25 @@ function initialStateValueOfDropDown (){
   }
 } initialStateValueOfDropDown ()
 
-const FunDropdown = ({ id,dropData}) => {
+const FunDropdown = ({ id }) => {
 
   const [isActive, setisActive] = useState(false);
   const ref=useRef([])
-  useEffect(()=>{
-    ref.current=Datafun(Data,value)
-  },[])
+  ref.current=Datafunction(Data,value)
+
 
   const initialDropValueRef=()=>{
     ref.current.map((item)=>{
       if(item.from===id){
         demo.from=item.from
+        demo.next=item.next
+        demo.prev=item.prev
+        demo.id=item.id
       } 
      })
   }
-  const initialDropValueData=()=>{
-    Data.map((item)=>{
-      if(item.from===id){
-        demo.from=item.from
-      } 
-     })
-  }
-  
-  {ref.current.length>0? initialDropValueRef():initialDropValueData()}
+  initialDropValueRef()
+
 
   function forPerev() {
     if (demo.id === 1) {
@@ -91,22 +86,13 @@ const FunDropdown = ({ id,dropData}) => {
         <div className="dropdown-content">
           {ref.current.map((samples) => (
             <Link to={samples.to}>
-              <div
-                className="dropdown-item"
-                onClick={(e) => {
-                  demo.from = samples.from;
-                  demo.id = samples.id;
-                  demo.next = samples.next;
-                  demo.prev = samples.prev;
-                }}
-              >
+              <div className="dropdown-item">
                 {samples.from}
               </div>
             </Link>
           ))}
         </div>
       )}
-
       <Link to={demo.next}>
         <div className={demo.next === "" ? "disable-btn" : "button-24"} disabled={demo.next === ""} onClick={forNext}>Next &raquo;</div>
       </Link>
