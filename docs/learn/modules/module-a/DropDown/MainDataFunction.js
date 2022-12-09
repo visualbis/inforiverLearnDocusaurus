@@ -1,5 +1,5 @@
 
-export const Datafun=(item1,item2)=>{
+export const Datafunction=(item1,item2)=>{
     const nweArray=[]
     for(let j=0;j<item2.length;j++){
          if(j===0){
