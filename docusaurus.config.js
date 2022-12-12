@@ -29,11 +29,10 @@ module.exports = {
       logo: {
         alt: "Inforiver Logo",
         src: "img/inforiver-design.png",
-        href: "/",
       },
       items: [
         {
-          to: "/learn/modules/module-a",
+          to: "/",
           label: "Learn",
           activeBasePath: "/learn",
           position: "left",

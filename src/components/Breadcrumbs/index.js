@@ -3,8 +3,10 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import styles from "../../css/learn/learn.module.css";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import { BreadValue } from "../PageView"
+import { BreadLink } from "../PageView";
 
-export default function Breadcrumbs({link,title}) {
+export default function Breadcrumbs({ link, title, Value }) {
   return (
     <>
       <nav
@@ -13,12 +15,6 @@ export default function Breadcrumbs({link,title}) {
         itemtype="https://schema.org/BreadcrumbList"
         className={styles.breadcrumbs}>
         <ul class="breadcrumbs breadcrumbs--lg" style={{ padding: "5px 10px" }}>
-          <a
-            className={clsx(styles.breadcrumbsLink, "breabreadcrumbs__link")}
-            href="/">
-            Home
-          </a>
-          <span style={{ padding: 0 }}>/</span>
           <a
             className={clsx(
               styles.breadcrumbsLink,
@@ -29,20 +25,25 @@ export default function Breadcrumbs({link,title}) {
             Learn
           </a>
           <span style={{ padding: 0 }}>/</span>
-          <a
-            className={clsx(styles.breadcrumbsLink, "breabreadcrumbs__link")}
-            href="/">
-            Modules
-          </a>
-          <span style={{ padding: 0 }}>/</span>
-          <a
-            className={clsx(
+          <Link
+            to={link ? `/learn/modules/${link}` : `/learn/modules/${BreadLink}`}
+            className={BreadValue ? clsx(
+              styles.breadcrumbsLink,
+            ) : clsx(
               styles.breadcrumbsLink,
               styles.breadcrumbsLinkActive
             )}
-            href={`/learn/modules/${link}`}>
-            {title}
-          </a>
+          >
+            {title ? title : BreadValue}
+          </Link>
+          {BreadValue ? <span style={{ padding: 0 }}>/</span> : ""}
+          <Link className={clsx(
+            styles.breadcrumbsLink,
+            styles.breadcrumbsLinkActive
+          )}
+          >
+            {Value}
+          </Link>
         </ul>
       </nav>
     </>
