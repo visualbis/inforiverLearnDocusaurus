@@ -14,7 +14,7 @@ function HomepageHeader() {
       <div className={styles.heroContainer}>
         <div className="container">
           <p className={styles.heroSupertitle}>Inforiver Training</p>
-          <h1 className="hero__title">Charts, Matrix, Enterprice</h1>
+          <h1 className="hero__title">Charts, Matrix, Enterprise</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
         </div>
         <img className={styles.heroBannerImage} src="img/hero-banner.png"></img>
