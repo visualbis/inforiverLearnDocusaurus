@@ -43,7 +43,7 @@ module.exports = {
           position: "left",
           //TODO: Check once
           // activeBaseRegex: '^((?!releases|references|how_to_videos).)*$',
-          title: "Docs",
+          // title: "Docs",
         },
       ],
     },
