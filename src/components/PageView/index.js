@@ -4,11 +4,15 @@ import Link from "@docusaurus/Link";
 import styles from "../../css/learn/learn.module.css";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
-export let value=[]
+export let value=[];
+export let BreadValue="";
+export let BreadLink="";
 
 export default function Breadcrumbs({ link, title, description, chapters }) {
 
     const redirect=useRef("") 
+    const BreadCrumbsValue=useRef(title)
+    const BreadCrumbsLink=useRef(link)
     const pageRedirect=()=>{
       chapters.map((item,index)=>{
         if(index===0){
@@ -18,7 +22,11 @@ export default function Breadcrumbs({ link, title, description, chapters }) {
     }
     pageRedirect()
 
-    const submit=()=>{value=chapters}
+    const submit=()=>{
+      value=chapters;
+      BreadValue=BreadCrumbsValue.current;
+      BreadLink=BreadCrumbsLink.current
+    }
      
   return (
     <>
