@@ -5,7 +5,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 module.exports = {
   title: "Inforiver Documentation",
   tagline:
-    "Learn how to install, Model, Plan, Simulate, and Analyze with Inforiver",
+    "The fastest way to do everything in Power BI",
   //TODO: Change this url
   url: "https://valq.com",
   baseUrl: "/inforiverLearnDocusaurus/",
@@ -25,10 +25,10 @@ module.exports = {
   themeConfig: {
     navbar: {
       hideOnScroll: true,
-      title: "Inforiver",
+      // title: "Inforiver",
       logo: {
         alt: "Inforiver Logo",
-        src: "img/inforiver-design.png",
+        src: "img/inforiver-logo.svg",
       },
       items: [
         {
