@@ -3,10 +3,13 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import styles from "../../css/learn/learn.module.css";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { BreadValue } from "../PageView"
 import { BreadLink } from "../PageView";
 
+
 export default function Breadcrumbs({ link, title, Value }) {
+  const { siteConfig } = useDocusaurusContext();
   return (
     <>
       <nav
@@ -16,7 +19,7 @@ export default function Breadcrumbs({ link, title, Value }) {
         className={styles.breadcrumbs}>
         <ul class="breadcrumbs breadcrumbs--lg" style={{ padding: "5px 10px" }}>
           <Link
-            to="/"
+            to={siteConfig.baseUrl}
             className={clsx(
               styles.breadcrumbsLink,
               "breabreadcrumbs__link",
