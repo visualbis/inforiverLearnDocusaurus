@@ -15,15 +15,16 @@ export default function Breadcrumbs({ link, title, Value }) {
         itemtype="https://schema.org/BreadcrumbList"
         className={styles.breadcrumbs}>
         <ul class="breadcrumbs breadcrumbs--lg" style={{ padding: "5px 10px" }}>
-          <a
+          <Link
+            to="/"
             className={clsx(
               styles.breadcrumbsLink,
               "breabreadcrumbs__link",
               "breadcrumbs__item--active"
             )}
-            href="/">
+          >
             Learn
-          </a>
+          </Link>
           <span style={{ padding: 0 }}>/</span>
           <Link
             to={link ? `/learn/modules/${link}` : `/learn/modules/${BreadLink}`}
